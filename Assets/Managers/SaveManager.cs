@@ -30,8 +30,21 @@ public class SaveManager : MonoBehaviour
 
         fileName = Path.Combine("saves", $"{saveName}_UndergroundSave_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.json");
     }
+    
+    public void SaveGameState(GameState gameState, bool autosave = false)
+    {
+        string data = JsonUtility.ToJson(gameState);
+        SaveGame(data, autosave);
+    }
 
-    public void SaveGame(string data, bool autosave = false)
+    public GameState LoadGameState(string fileName)
+    {
+        string data = LoadGame(fileName);
+        GameState gameState = JsonUtility.FromJson<GameState>(data);
+        return gameState;
+    }
+
+    private void SaveGame(string data, bool autosave = false)
     {
         string path;
 
@@ -44,7 +57,7 @@ public class SaveManager : MonoBehaviour
         {
             path = fileName;
         }
-        
+
         if (WriteToFile(path, data) == true)
         {
             Debug.Log("Game saved successfully.");
@@ -55,7 +68,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public string LoadGame(string fileName)
+    private string LoadGame(string fileName)
     {
         string data = "";
         if (ReadFromFile(out string dataFromFile, fileName) == true)
