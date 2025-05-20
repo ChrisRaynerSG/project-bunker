@@ -13,7 +13,76 @@ public static class MeshUtilities
         vertices[3] = new Vector3(origin.x - .5f, origin.y + .5f, origin.z + .5f);
 
         meshData.vertices.AddRange(vertices);
+        AddTriangles(meshData, vertices);
+    }
 
+    public static void CreateFaceDown(MeshData meshData, Vector3 origin)
+    {
+        Vector3[] vertices = new Vector3[4];
+
+        vertices[0] = new Vector3(origin.x - .5f, origin.y - .5f, origin.z - .5f);
+        vertices[1] = new Vector3(origin.x + .5f, origin.y - .5f, origin.z - .5f);
+        vertices[2] = new Vector3(origin.x + .5f, origin.y - .5f, origin.z + .5f);
+        vertices[3] = new Vector3(origin.x - .5f, origin.y - .5f, origin.z + .5f);
+
+        meshData.vertices.AddRange(vertices);
+        AddTriangles(meshData, vertices);
+    }
+
+    public static void CreateFaceNorth(MeshData meshData, Vector3 origin)
+    {
+        Vector3[] vertices = new Vector3[4];
+
+        vertices[0] = new Vector3(origin.x + .5f, origin.y - .5f, origin.z + .5f);
+        vertices[1] = new Vector3(origin.x + .5f, origin.y + .5f, origin.z + .5f);
+        vertices[2] = new Vector3(origin.x - .5f, origin.y + .5f, origin.z + .5f);
+        vertices[3] = new Vector3(origin.x - .5f, origin.y - .5f, origin.z + .5f);
+
+        meshData.vertices.AddRange(vertices);
+        AddTriangles(meshData, vertices);
+    }
+
+    public static void CreateFaceEast(MeshData meshData, Vector3 origin)
+    {
+        Vector3[] vertices = new Vector3[4];
+
+        vertices[0] = new Vector3(origin.x + .5f, origin.y - .5f, origin.z - .5f);
+        vertices[1] = new Vector3(origin.x + .5f, origin.y + .5f, origin.z - .5f);
+        vertices[2] = new Vector3(origin.x + .5f, origin.y + .5f, origin.z + .5f);
+        vertices[3] = new Vector3(origin.x + .5f, origin.y - .5f, origin.z + .5f);
+
+        meshData.vertices.AddRange(vertices);
+        AddTriangles(meshData, vertices);
+    }
+
+    public static void CreateFaceSouth(MeshData meshData, Vector3 origin)
+    {
+        Vector3[] vertices = new Vector3[4];
+
+        vertices[0] = new Vector3(origin.x - .5f, origin.y - .5f, origin.z - .5f);
+        vertices[1] = new Vector3(origin.x - .5f, origin.y + .5f, origin.z - .5f);
+        vertices[2] = new Vector3(origin.x + .5f, origin.y + .5f, origin.z - .5f);
+        vertices[3] = new Vector3(origin.x + .5f, origin.y - .5f, origin.z - .5f);
+
+        meshData.vertices.AddRange(vertices);
+        AddTriangles(meshData, vertices);
+    }
+
+    public static void CreateFaceWest(MeshData meshData, Vector3 origin)
+    {
+        Vector3[] vertices = new Vector3[4];
+
+        vertices[0] = new Vector3(origin.x - .5f, origin.y - .5f, origin.z + .5f);
+        vertices[1] = new Vector3(origin.x - .5f, origin.y + .5f, origin.z + .5f);
+        vertices[2] = new Vector3(origin.x - .5f, origin.y + .5f, origin.z - .5f);
+        vertices[3] = new Vector3(origin.x - .5f, origin.y - .5f, origin.z - .5f);
+
+        meshData.vertices.AddRange(vertices);
+        AddTriangles(meshData, vertices);
+    }
+
+    public static void AddTriangles(MeshData meshData, Vector3[] vertices)
+    {
         int[] triangles = new int[6];
         triangles[0] = meshData.vertices.Count - 4;
         triangles[1] = meshData.vertices.Count - 3;
