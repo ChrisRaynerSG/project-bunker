@@ -22,9 +22,14 @@ public class WorldGenerator : MonoBehaviour
             for (int z = 0; z < maxZ; z++)
             {
                 Vector3 targetPosition = Vector3.zero;
-                targetPosition.x = x*1;
-                targetPosition.z = z*1;
+                targetPosition.x = x * 1;
+                targetPosition.z = z * 1;
                 MeshUtilities.CreateFaceUp(meshData, targetPosition);
+                // MeshUtilities.CreateFaceDown(meshData, targetPosition); maybe later if we want to look up at cubes
+                MeshUtilities.CreateFaceNorth(meshData, targetPosition);
+                MeshUtilities.CreateFaceEast(meshData, targetPosition);
+                MeshUtilities.CreateFaceSouth(meshData, targetPosition);
+                MeshUtilities.CreateFaceWest(meshData, targetPosition);
             }
         }
         return meshData;
